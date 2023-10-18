@@ -83,3 +83,10 @@ function floor(arr, target) {
     }
     return ans
 } console.log(floor([10, 20, 30, 40], 25));
+
+function firstNlast(arr, target) {
+    let n = arr.length
+    let lb = lowerBound(arr, target)
+    if (lb == n || arr[lb] !== target) return [-1, -1]
+    return [lb, upperBound(arr, target) - 1]
+} console.log(firstNlast([2, 4, 6, 8, 8, 8, 11, 13], 8));
