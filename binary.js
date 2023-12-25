@@ -212,7 +212,7 @@ function floorSqrt(n, m) {
     function f(mid, n, m) {
         let ans = 1
         for (let i = 1; i <= n; i++) {
-            ans = ans * mid
+            ans *= mid
             if (ans > m) return 2
         }
         if (ans == m) return 1
@@ -220,7 +220,6 @@ function floorSqrt(n, m) {
     }
     let low = 1
     let high = m
-    let ans = 1
     while (low <= high) {
         let mid = Math.floor((low + high) / 2)
         if (f(mid, n, m) == 1) {
@@ -233,3 +232,26 @@ function floorSqrt(n, m) {
     }
     return -1
 } console.log(floorSqrt(3, 27));
+
+function kokoEatingBananas(arr, limit) {
+    function f(mid) {
+        let totalhrs = 0
+        for (let i = 0; i < arr.length; i++) {
+            totalhrs += (Math.ceil(arr[i] / mid))
+        }
+        return totalhrs
+    }
+    let low = 1
+    let high = Math.max(...arr)
+    let ans = Infinity
+    while (low <= high) {
+        let mid = Math.floor((low + high) / 2)
+        if (f(mid) <= limit) {
+            ans = mid
+            high = mid - 1
+        } else {
+            low = mid + 1
+        }
+    }
+    return ans
+} console.log(kokoEatingBananas([3, 6, 7, 11], 8));
